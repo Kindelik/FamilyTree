@@ -1,5 +1,3 @@
-import java.util.Collections;
-
 public class Main {
     public static void main(String[] args) {
         FamilyTree test = new FamilyTree();
@@ -14,13 +12,10 @@ public class Main {
         test.add(humanFour);
         test.add(humanFive);
 
-        FamilyTree testNull = new FamilyTree();
-        inOutSerialObject.loadFile();
-
-
-       // StringBuilder sb = humanThree.getHumanInfoTXT();
-       // System.out.println(humanThree.getChildrens());
-       // System.out.println(sb);
+        String nameFile = "FamList";
+        inOutSerialObject.saveFile(test,nameFile);
+        FamilyTree testNull= inOutSerialObject.loadFile(nameFile);
+        System.out.println(testNull);
 
     }
 }
