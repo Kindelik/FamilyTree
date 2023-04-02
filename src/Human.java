@@ -12,14 +12,11 @@ public class Human implements Serializable {
     private final String dateOfDeath;
     private final String sex;
     private Human mather;
-    private int matherID;
     private Human father;
-    private int fatherID;
     private final List<Human> childrens;
-    private List<Integer> childID;
 
 
-    /** 
+    /**
      * @param firstName   Имя
      * @param lastname    Фамилия
      * @param dateOfBirth дата рождения (Формат записи "ГГГГ-ММ-ДД")
@@ -35,12 +32,8 @@ public class Human implements Serializable {
         this.dateOfDeath = null;
         this.sex = String.valueOf(sex);
         this.mather = mather;
-        this.matherID = mather.getId();
         this.father = father;
-        this.fatherID = father.getId();
         this.childrens = new ArrayList<>();
-        this.childID = new ArrayList<>();
-        childID.add(-1);
     }
 
     public Human(String firstName, String lastname, String dateOfBirth, Sex sex) {
@@ -51,12 +44,8 @@ public class Human implements Serializable {
         this.dateOfBirth = dateOfBirth;
         this.dateOfDeath = null;
         this.mather = null;
-        this.matherID = -1;
         this.father = null;
-        this.fatherID = -1;
         this.childrens = new ArrayList<>();
-        this.childID = new ArrayList<>();
-        childID.add(-1);
     }
 
     public String getFirstName() {
@@ -79,9 +68,6 @@ public class Human implements Serializable {
         return id;
     }
 
-    public List<Integer> getChildID() {
-        return childID;
-    }
 
     public Human getMather() {
         return mather;
@@ -99,14 +85,6 @@ public class Human implements Serializable {
         return sex;
     }
 
-    private int getMatherID() {
-        return matherID;
-    }
-
-    private int getFatherID() {
-        return fatherID;
-    }
-
     private void setMather(Human mather) {
         this.mather = mather;
     }
@@ -120,9 +98,9 @@ public class Human implements Serializable {
 
         if(!childrens.contains(human)) {
             childrens.add(human);
-            childID.add(human.getId());
         }
     }
+
     public StringBuilder getHumanInfoTXT(){
         StringBuilder sbH = new StringBuilder();
         sbH.append(this.id);
@@ -134,16 +112,9 @@ public class Human implements Serializable {
         sbH.append(this.dateOfBirth);
         sbH.append(",");
         if(this.dateOfDeath != null) sbH.append(this.dateOfDeath);
-        else sbH.append("-1");
+        else sbH.append("null");
         sbH.append(",");
         sbH.append(this.sex);
-        sbH.append(",");
-        sbH.append(this.fatherID);
-        sbH.append(",");
-        sbH.append(this.matherID);
-        sbH.append(",");
-        sbH.append(this.childID);
-
         return sbH;
     }
 

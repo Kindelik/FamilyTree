@@ -1,9 +1,13 @@
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.List;
 
 public interface InOutFiles {
-   abstract void loadFile(FileReader file);
-    abstract void saveFile(FileWriter file);
+    public static FamilyTree loadFile(FileInputStream file) {
+        return null;
+    }
+
+    public static void saveFile(FamilyTree familyTree, FileOutputStream file) {
+
+    }
 
 }
