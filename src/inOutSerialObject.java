@@ -1,9 +1,8 @@
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;public class inOutSerialObject implements InOutFiles {
+import java.io.*;
+
+public class inOutSerialObject implements InOutFiles, Serializable {
 /** Не работает*/
-    public static FamilyTree  loadFile(String str) {
+    public  FamilyTree  loadFile(String str) {
         FamilyTree familyTree = null;
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(str))) {
             familyTree = (FamilyTree) ois.readObject();
@@ -13,8 +12,8 @@ import java.io.ObjectOutputStream;public class inOutSerialObject implements InOu
       return familyTree;
     }
 
-    public static void saveFile(FamilyTree familyTree,String str) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("FamList.dat"))) {
+    public  void saveFile(FamilyTree familyTree, String str) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(str))) {
           oos.writeObject(familyTree);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

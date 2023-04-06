@@ -1,21 +1,30 @@
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
-        FamilyTree test = new FamilyTree();
-        Human humanOne = new Human("Андрей", "Пивоваров", "1974-11-21", Sex.male);
-        Human humanTwo = new Human("Мария", "Белова", "1975-06-15", Sex.female);
-        Human humanThree = new Human("Артем", "Пивоваров", "2000-03-08", Sex.male, humanTwo, humanOne);
-        Human humanFour = new Human("Кристина", "Вротмненоговна", "2003-01-27", Sex.female);
-        Human humanFive = new Human("Алина", "Пивоварова", "2023-08-18", Sex.female, humanFour, humanThree);
-        test.add(humanOne);
-        test.add(humanTwo);
-        test.add(humanThree);
-        test.add(humanFour);
-        test.add(humanFive);
 
-        String nameFile = "FamList";
-        inOutSerialObject.saveFile(test,nameFile);
-        FamilyTree testNull= inOutSerialObject.loadFile(nameFile);
-        System.out.println(testNull);
+       // Human humanOne = new Human("Андрей", "Пивоваров", LocalDate.of(1974, 11, 21), Sex.male);
+       // Human humanTwo = new Human("Мария", "Белова", LocalDate.of(1975, 6, 15), Sex.female);
+       // Human humanThree = new Human("Артем", "Пивоваров", LocalDate.of(2000, 3, 8), Sex.male, humanTwo, humanOne);
+       // Human humanFour = new Human("Кристина", "Вротмненоговна", LocalDate.of(2003, 1, 27), Sex.female);
+        //Human humanFive = new Human("Алина", "Пивоварова", LocalDate.of(2023, 8, 18), Sex.female, humanFour, humanThree);
+        FamilyTree test = new FamilyTree();
+        Service service = new Service(test);
+
+        service.addHuman("Андрей", "Пивоваров", LocalDate.of(1974, 11, 21), Sex.male);
+        service.addHuman("Мария", "Белова", LocalDate.of(1975, 6, 15), Sex.female);
+        service.addHuman("Артем", "Пивоваров", LocalDate.of(2000, 3, 8),
+                Sex.male, service.getFamilyGroup().familyTree.get(0), service.getFamilyGroup().familyTree.get(1));
+        service.addHuman("Кристина", "Вротмненоговна", LocalDate.of(2003, 1, 27), Sex.female);
+        service.addHuman("Алина", "Пивоварова", LocalDate.of(2023, 8, 18),
+                Sex.female, service.getFamilyGroup().familyTree.get(2),service.getFamilyGroup().familyTree.get(3));
+
+        service.sortByLastName();
+        for (Human item: test) {
+            System.out.println(item);
+            
+        }
+
 
     }
 }
