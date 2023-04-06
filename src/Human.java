@@ -1,21 +1,22 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Human {
+public class Human implements Serializable {
     private static int count = 1;
     private final int id;
     protected final String firstName;
     protected final String lastname;
     private final String dateOfBirth;
     private final String dateOfDeath;
-    private final Sex sex;
+    private final String sex;
     private Human mather;
     private Human father;
     private final List<Human> childrens;
 
 
-    /** 
+    /**
      * @param firstName   Имя
      * @param lastname    Фамилия
      * @param dateOfBirth дата рождения (Формат записи "ГГГГ-ММ-ДД")
@@ -29,7 +30,7 @@ public class Human {
         this.lastname = lastname;
         this.dateOfBirth = dateOfBirth;
         this.dateOfDeath = null;
-        this.sex = sex;
+        this.sex = String.valueOf(sex);
         this.mather = mather;
         this.father = father;
         this.childrens = new ArrayList<>();
@@ -39,7 +40,7 @@ public class Human {
         this.id = count++;
         this.firstName = firstName;
         this.lastname = lastname;
-        this.sex = sex;
+        this.sex = String.valueOf(sex);
         this.dateOfBirth = dateOfBirth;
         this.dateOfDeath = null;
         this.mather = null;
@@ -67,6 +68,7 @@ public class Human {
         return id;
     }
 
+
     public Human getMather() {
         return mather;
     }
@@ -79,6 +81,10 @@ public class Human {
         return childrens;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
     private void setMather(Human mather) {
         this.mather = mather;
     }
@@ -89,7 +95,27 @@ public class Human {
 
     /**Добавить ребенка в лист детей у человека*/
     public void addChildren(Human human) {
-        if(!childrens.contains(human)) childrens.add(human);
+
+        if(!childrens.contains(human)) {
+            childrens.add(human);
+        }
+    }
+
+    public StringBuilder getHumanInfoTXT(){
+        StringBuilder sbH = new StringBuilder();
+        sbH.append(this.id);
+        sbH.append(",");
+        sbH.append(this.firstName);
+        sbH.append(",");
+        sbH.append(this.lastname);
+        sbH.append(",");
+        sbH.append(this.dateOfBirth);
+        sbH.append(",");
+        if(this.dateOfDeath != null) sbH.append(this.dateOfDeath);
+        else sbH.append("null");
+        sbH.append(",");
+        sbH.append(this.sex);
+        return sbH;
     }
 
     @Override

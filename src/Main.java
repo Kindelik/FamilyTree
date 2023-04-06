@@ -1,27 +1,32 @@
-public class Main  {
-    public static void main(String[] args) {
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+public class Main {
+    public static void main(String[] args) throws FileNotFoundException {
+        FamilyTree testOne = new FamilyTree();
         Human humanOne = new Human("Андрей", "Пивоваров", "1974-11-21", Sex.male);
         Human humanTwo = new Human("Мария", "Белова", "1975-06-15", Sex.female);
         Human humanThree = new Human("Артем", "Пивоваров", "2000-03-08", Sex.male, humanTwo, humanOne);
         Human humanFour = new Human("Кристина", "Вротмненоговна", "2003-01-27", Sex.female);
         Human humanFive = new Human("Алина", "Пивоварова", "2023-08-18", Sex.female, humanFour, humanThree);
+        testOne.add(humanOne);
+        testOne.add(humanTwo);
+        testOne.add(humanThree);
+        testOne.add(humanFour);
+        testOne.add(humanFive);
 
-        FamilyTree test = new FamilyTree();
-        FamilyTree testNull = new FamilyTree();
-        test.add(humanOne);
-        test.add(humanTwo);
-        test.add(humanThree);
-        test.add(humanFour);
-        test.add(humanFive);
-       // humanThree.addChildren(humanFive);
-       // humanFour.addChildren(humanFive);
-        System.out.println(humanFour.getChildrens()); 
-       // saveFile(test);
-      //  loadFile(testNull);
+        FamilyTree testTwo = new FamilyTree();
 
-        //System.out.println(testNull);
-        //System.out.println(humanThree.getChildrens());
-        // System.out.println(test);
-        //System.out.println(test.searchHuman("Пивоваров"));
+       //  Проверка сериализации
+       String nameFile = "FamList";
+        inOutSerialObject.saveFile(testOne,nameFile);
+       testTwo = inOutSerialObject.loadFile(nameFile);
+        System.out.println(testTwo);
+
+
+
+
     }
 }
+

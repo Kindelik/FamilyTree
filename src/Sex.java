@@ -1,5 +1,5 @@
 enum Sex {
-        male,female
+    male,female
 
     }
 
