@@ -1,20 +1,20 @@
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-public class Human implements Serializable {
-    private static int count = 1;
-    private final int id;
-    protected final String firstName;
-    protected final String lastname;
-    private final String dateOfBirth;
-    private final String dateOfDeath;
-    private final String sex;
+import static java.lang.String.*;
+
+public class Human implements Serializable, Comparable<Human> {
+    private int id;
+    private String firstName;
+    private String lastname;
+    private LocalDate dateOfBirth;
+    private LocalDate dateOfDeath;
+    private String sex;
     private Human mather;
     private Human father;
     private final List<Human> childrens;
-
 
     /**
      * @param firstName   Имя
@@ -24,23 +24,24 @@ public class Human implements Serializable {
      * @param mather      ссылка на объект мать Human(sex female)
      * @param father      ссылка на объект отец Human(sex male)
      */
-    public Human(String firstName, String lastname, String dateOfBirth, Sex sex, Human mather, Human father) {
-        this.id = count++;
+    public Human(int id, String firstName, String lastname, LocalDate dateOfBirth, Sex sex, Human mather, Human father) {
+        this.id = id;
         this.firstName = firstName;
         this.lastname = lastname;
         this.dateOfBirth = dateOfBirth;
         this.dateOfDeath = null;
-        this.sex = String.valueOf(sex);
+        this.sex = valueOf(sex);
         this.mather = mather;
         this.father = father;
         this.childrens = new ArrayList<>();
+
     }
 
-    public Human(String firstName, String lastname, String dateOfBirth, Sex sex) {
-        this.id = count++;
+    public Human(int id, String firstName, String lastname, LocalDate dateOfBirth, Sex sex) {
+        this.id = id;
         this.firstName = firstName;
         this.lastname = lastname;
-        this.sex = String.valueOf(sex);
+        this.sex = valueOf(sex);
         this.dateOfBirth = dateOfBirth;
         this.dateOfDeath = null;
         this.mather = null;
@@ -56,11 +57,11 @@ public class Human implements Serializable {
         return lastname;
     }
 
-    public String getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public String getDateOfDeath() {
+    public LocalDate getDateOfDeath() {
         return dateOfDeath;
     }
 
@@ -93,15 +94,21 @@ public class Human implements Serializable {
         this.father = father;
     }
 
-    /**Добавить ребенка в лист детей у человека*/
+    /**
+     * Добавить ребенка в лист детей у человека
+     */
     public void addChildren(Human human) {
 
-        if(!childrens.contains(human)) {
+        if (!childrens.contains(human)) {
             childrens.add(human);
         }
     }
 
-    public StringBuilder getHumanInfoTXT(){
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public StringBuilder getHumanInfo() {
         StringBuilder sbH = new StringBuilder();
         sbH.append(this.id);
         sbH.append(",");
@@ -111,8 +118,8 @@ public class Human implements Serializable {
         sbH.append(",");
         sbH.append(this.dateOfBirth);
         sbH.append(",");
-        if(this.dateOfDeath != null) sbH.append(this.dateOfDeath);
-        else sbH.append("null");
+        if (this.dateOfDeath != null) sbH.append(this.dateOfDeath);
+        else sbH.append("-1");
         sbH.append(",");
         sbH.append(this.sex);
         return sbH;
@@ -138,5 +145,17 @@ public class Human implements Serializable {
     public int hashCode() {
         return Objects.hash(id, firstName, lastname, dateOfBirth, dateOfDeath, sex);
     }
+
+    @Override
+    public int compareTo(Human o) {
+        return firstName.compareTo(o.firstName);
+
+
+    }
+
+
 }
+
+
+
 

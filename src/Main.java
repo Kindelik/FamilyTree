@@ -1,32 +1,30 @@
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+
+import java.time.LocalDate;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
-        FamilyTree testOne = new FamilyTree();
-        Human humanOne = new Human("Андрей", "Пивоваров", "1974-11-21", Sex.male);
-        Human humanTwo = new Human("Мария", "Белова", "1975-06-15", Sex.female);
-        Human humanThree = new Human("Артем", "Пивоваров", "2000-03-08", Sex.male, humanTwo, humanOne);
-        Human humanFour = new Human("Кристина", "Вротмненоговна", "2003-01-27", Sex.female);
-        Human humanFive = new Human("Алина", "Пивоварова", "2023-08-18", Sex.female, humanFour, humanThree);
-        testOne.add(humanOne);
-        testOne.add(humanTwo);
-        testOne.add(humanThree);
-        testOne.add(humanFour);
-        testOne.add(humanFive);
+    public static void main(String[] args) {
 
-        FamilyTree testTwo = new FamilyTree();
+       // Human humanOne = new Human("Андрей", "Пивоваров", LocalDate.of(1974, 11, 21), Sex.male);
+       // Human humanTwo = new Human("Мария", "Белова", LocalDate.of(1975, 6, 15), Sex.female);
+       // Human humanThree = new Human("Артем", "Пивоваров", LocalDate.of(2000, 3, 8), Sex.male, humanTwo, humanOne);
+       // Human humanFour = new Human("Кристина", "Вротмненоговна", LocalDate.of(2003, 1, 27), Sex.female);
+        //Human humanFive = new Human("Алина", "Пивоварова", LocalDate.of(2023, 8, 18), Sex.female, humanFour, humanThree);
+        FamilyTree test = new FamilyTree();
+        Service service = new Service(test);
 
-       //  Проверка сериализации
-       String nameFile = "FamList";
-        inOutSerialObject.saveFile(testOne,nameFile);
-       testTwo = inOutSerialObject.loadFile(nameFile);
-        System.out.println(testTwo);
+        service.addHuman("Андрей", "Пивоваров", LocalDate.of(1974, 11, 21), Sex.male);
+        service.addHuman("Мария", "Белова", LocalDate.of(1975, 6, 15), Sex.female);
+        service.addHuman("Артем", "Пивоваров", LocalDate.of(2000, 3, 8),
+                Sex.male, service.getFamilyGroup().familyTree.get(0), service.getFamilyGroup().familyTree.get(1));
+        service.addHuman("Кристина", "Вротмненоговна", LocalDate.of(2003, 1, 27), Sex.female);
+        service.addHuman("Алина", "Пивоварова", LocalDate.of(2023, 8, 18),
+                Sex.female, service.getFamilyGroup().familyTree.get(2),service.getFamilyGroup().familyTree.get(3));
 
-
-
-
+        service.sortByLastName();
+        for (Human item: test) {
+            System.out.println(item);
+            
+        }
     }
 }
 

@@ -1,20 +1,21 @@
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /* Создание класса в котором будет хранится весь перечень людей
     и различные методы для работы с этим деревом
     */
-public class FamilyTree implements Serializable {
+public class FamilyTree implements Serializable,Iterable<Human> {
     List<Human> familyTree;
 
     public FamilyTree(List<Human> familyTree) {
         this.familyTree = familyTree;
     }
-
     public FamilyTree() {
         this.familyTree = new ArrayList<Human>();
+    }
+
+    public List<Human> getFamilyTree() {
+        return familyTree;
     }
 
     // Добавить новый объект Human в лист дерева
@@ -54,6 +55,20 @@ public class FamilyTree implements Serializable {
             System.out.println(item);
         }
         return " ";
+    }
+
+    @Override
+    public Iterator<Human> iterator() {
+
+        return new HumanIterator(familyTree);
+    }
+
+    public void sortByID() {
+        familyTree.sort( new HumanComparatorByID());
+    }
+
+    public void sortByLastName() {
+        familyTree.sort( new HumanComparatorByLastName());
     }
 }
 
