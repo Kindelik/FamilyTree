@@ -11,7 +11,7 @@ public class FamilyTree implements Serializable,Iterable<Human> {
         this.familyTree = familyTree;
     }
     public FamilyTree() {
-        this.familyTree = new ArrayList<>();
+        this.familyTree = new ArrayList<Human>();
     }
 
     public List<Human> getFamilyTree() {
