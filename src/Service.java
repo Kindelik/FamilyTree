@@ -9,18 +9,20 @@ public class Service {
 
     }
 
+
+
     public FamilyTree getFamilyGroup() {
         return familyGroup;
     }
 
     public void addHuman(String firstName, String lastname, LocalDate dateOfBirth, Sex sex, Human mather, Human father) {
         id++;
-        familyGroup.add(new Human(id, firstName, lastname, dateOfBirth, sex, mather, father));
+        familyGroup.add((Animal) new Human(id, firstName, lastname, dateOfBirth, sex, mather, father));
     }
 
     public void addHuman(String firstName, String lastname, LocalDate dateOfBirth, Sex sex) {
         id++;
-        familyGroup.add(new Human(id, firstName, lastname, dateOfBirth, sex));
+        familyGroup.add((Animal) new Human(id, firstName, lastname, dateOfBirth, sex));
     }
 
     public void sortByID() {

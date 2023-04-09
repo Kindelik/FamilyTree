@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import static java.lang.String.*;
 
-public class Human implements Serializable, Comparable<Human> {
+public class Human implements Serializable, Comparable<Human>, Animal {
     private int id;
     private String firstName;
     private String lastname;
@@ -99,10 +99,10 @@ public class Human implements Serializable, Comparable<Human> {
     /**
      * Добавить ребенка в лист детей у человека
      */
-    public void addChildren(Human human) {
+    public void addChildren(Animal human) {
 
         if (!childrens.contains(human)) {
-            childrens.add(human);
+            childrens.add((Human) human);
         }
     }
 

@@ -4,37 +4,39 @@ import java.util.*;
 /* Создание класса в котором будет хранится весь перечень людей
     и различные методы для работы с этим деревом
     */
-public class FamilyTree implements Serializable,Iterable<Human> {
-    List<Human> familyTree;
+public class FamilyTree<E extends Animal> implements Serializable,Iterable<E> {
+    private List<E> familyTree;
 
-    public FamilyTree(List<Human> familyTree) {
+    public FamilyTree(List<E> familyTree) {
         this.familyTree = familyTree;
     }
     public FamilyTree() {
         this.familyTree = new ArrayList<>();
     }
 
-    public List<Human> getFamilyTree() {
+    public List<E> getFamilyTree() {
         return familyTree;
     }
 
     // Добавить новый объект Human в лист дерева
-    public void add(Human human) {
+    public void add(E human) {
         if (!familyTree.contains(human)) {
             this.familyTree.add(human);
             if (human.getFather() != null) human.getFather().addChildren(human);
-            if (human.getMather() != null) human.getMather().addChildren(human);
+            if (human.getMather() != null) human.getMather().addChildren( human);
         }
     }
 
     // Поиск человека по Фамилии в дереве
-    public List<Human> searchHuman(String lastName) {
-        List<Human> searchTemp = new ArrayList<>();
-        for (Human item : familyTree) {
+    public List<E> searchHuman(String lastName) {
+        List<E> searchTemp = new ArrayList<>();
+        for (E item : familyTree) {
             if (item.getLastname().equals(lastName)) searchTemp.add(item);
         }
         return searchTemp;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -44,6 +46,7 @@ public class FamilyTree implements Serializable,Iterable<Human> {
         return Objects.equals(familyTree, that.familyTree);
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(familyTree);
@@ -51,24 +54,24 @@ public class FamilyTree implements Serializable,Iterable<Human> {
 
     @Override
     public String toString() {
-        for (Human item : familyTree) {
+        for (E item : familyTree) {
             System.out.println(item);
         }
         return " ";
     }
 
     @Override
-    public Iterator<Human> iterator() {
+    public Iterator<E> iterator() {
 
         return new HumanIterator(familyTree);
     }
 
     public void sortByID() {
-        familyTree.sort( new HumanComparatorByID());
+        familyTree.sort((Comparator<? super E>) new HumanComparatorByID());
     }
 
     public void sortByLastName() {
-        familyTree.sort( new HumanComparatorByLastName());
+        familyTree.sort((Comparator<? super E>) new HumanComparatorByLastName());
     }
 }
 
