@@ -1,8 +1,13 @@
+package WorkingFiles;
+
+import FamilyTrees.FamilyTree;
+import WorkingFiles.InOutFiles;
+
 import java.io.*;
 
 public class inOutSerialObject implements InOutFiles, Serializable {
 /** Не работает*/
-    public  FamilyTree  loadFile(String str) {
+    public FamilyTree loadFile(String str) {
         FamilyTree familyTree = null;
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(str))) {
             familyTree = (FamilyTree) ois.readObject();

@@ -1,3 +1,10 @@
+package FamilyTrees;
+import Animal.Animal;
+import Humans.Human;
+import Humans.HumanComparatorByID;
+import Humans.HumanComparatorByLastName;
+import Humans.HumanIterator;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -18,7 +25,7 @@ public class FamilyTree<E extends Animal> implements Serializable,Iterable<E> {
         return familyTree;
     }
 
-    // Добавить новый объект Human в лист дерева
+    // Добавить новый объект Humans.Humans.Human в лист дерева
     public void add(E human) {
         if (!familyTree.contains(human)) {
             this.familyTree.add(human);

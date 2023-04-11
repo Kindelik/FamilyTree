@@ -1,13 +1,18 @@
+import FamilyTrees.FamilyTree;
+import Humans.Human;
+import Humans.Sex;
+import Services.Service;
+
 import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
 
-        // Human humanOne = new Human("Андрей", "Пивоваров", LocalDate.of(1974, 11, 21), Sex.male);
-        // Human humanTwo = new Human("Мария", "Белова", LocalDate.of(1975, 6, 15), Sex.female);
-        // Human humanThree = new Human("Артем", "Пивоваров", LocalDate.of(2000, 3, 8), Sex.male, humanTwo, humanOne);
-        // Human humanFour = new Human("Кристина", "Вротмненоговна", LocalDate.of(2003, 1, 27), Sex.female);
-        // Human humanFive = new Human("Алина", "Пивоварова", LocalDate.of(2023, 8, 18), Sex.female, humanFour, humanThree);
+        // Humans.Human humanOne = new Humans.Human("Андрей", "Пивоваров", LocalDate.of(1974, 11, 21), Sex.male);
+        // Humans.Human humanTwo = new Humans.Human("Мария", "Белова", LocalDate.of(1975, 6, 15), Sex.female);
+        // Humans.Human humanThree = new Humans.Human("Артем", "Пивоваров", LocalDate.of(2000, 3, 8), Sex.male, humanTwo, humanOne);
+        // Humans.Human humanFour = new Humans.Human("Кристина", "Вротмненоговна", LocalDate.of(2003, 1, 27), Sex.female);
+        // Humans.Human humanFive = new Humans.Human("Алина", "Пивоварова", LocalDate.of(2023, 8, 18), Sex.female, humanFour, humanThree);
         FamilyTree<Human> test = new FamilyTree();
         Service serviceHuman = new Service(test);
 
@@ -20,10 +25,11 @@ public class Main {
                 Sex.female, (Human) serviceHuman.getFamilyGroup().getFamilyTree().get(2), (Human) serviceHuman.getFamilyGroup().getFamilyTree().get(3));
 
         serviceHuman.sortByLastName();
-      //  for (Human item : test) {
-      //      System.out.println(item);
-      //  }
-        System.out.println(((Human) serviceHuman.getFamilyGroup().getFamilyTree().get(1)).getChildrens());
+       for (Humans.Human item : test) {
+           System.out.println(item);
+       }
+
+        //System.out.println(((Human) serviceHuman.getFamilyGroup().getFamilyTree().get(1)).getChildrens());
 
 
     }

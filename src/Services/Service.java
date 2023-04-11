@@ -1,3 +1,9 @@
+package Services;
+import Animal.Animal;
+import FamilyTrees.FamilyTree;
+import Humans.Human;
+import Humans.Sex;
+
 import java.time.LocalDate;
 
 public class Service {
@@ -17,12 +23,12 @@ public class Service {
 
     public void addHuman(String firstName, String lastname, LocalDate dateOfBirth, Sex sex, Human mather, Human father) {
         id++;
-        familyGroup.add((Animal) new Human(id, firstName, lastname, dateOfBirth, sex, mather, father));
+        familyGroup.add(new Human(id, firstName, lastname, dateOfBirth, sex, mather, father));
     }
 
     public void addHuman(String firstName, String lastname, LocalDate dateOfBirth, Sex sex) {
         id++;
-        familyGroup.add((Animal) new Human(id, firstName, lastname, dateOfBirth, sex));
+        familyGroup.add(new Human(id, firstName, lastname, dateOfBirth, sex));
     }
 
     public void sortByID() {

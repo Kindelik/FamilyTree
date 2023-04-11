@@ -1,3 +1,5 @@
+package Humans;
+import Animal.Animal;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,8 +25,8 @@ public class Human implements Serializable, Comparable<Human>, Animal {
      * @param lastname    Фамилия
      * @param dateOfBirth дата рождения (Формат записи "ГГГГ-ММ-ДД")
      * @param sex         пол(male or female)
-     * @param mather      ссылка на объект мать Human(sex female)
-     * @param father      ссылка на объект отец Human(sex male)
+     * @param mather      ссылка на объект мать Humans.Human(sex female)
+     * @param father      ссылка на объект отец Humans.Human(sex male)
      */
     public Human(int id, String firstName, String lastname, LocalDate dateOfBirth, Sex sex, Human mather, Human father) {
         this.id = id;

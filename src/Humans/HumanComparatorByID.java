@@ -1,3 +1,7 @@
+package Humans;
+
+import Humans.Human;
+
 import java.util.Comparator;
 
 public class HumanComparatorByID implements Comparator<Human> {
