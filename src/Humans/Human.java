@@ -1,5 +1,7 @@
 package Humans;
 import Animal.Animal;
+import Sex.Sex;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;

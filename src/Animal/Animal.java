@@ -6,9 +6,7 @@ import java.util.List;
 public  interface Animal<E> {
 
 
-     default int getId() {
-        return 0;
-    }
+      int getId();
      String getFirstName();
 
      String getLastname();
