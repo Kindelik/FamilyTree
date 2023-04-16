@@ -20,9 +20,27 @@ public class Presenter {
     }
 
     public void addHuman(List<String> human) {
-        //String[] temp = human.get(2).split(",");
-        service.addHuman(human.get(0), human.get(1), LocalDate.of(1994,04,24), Sex.valueOf(human.get(3)));
-        System.out.println("Человек добавлен");
+        service.addHuman(human.get(0), human.get(1), human.get(2), Sex.valueOf(human.get(3)));
+        view.print("Объект добавлен");
     }
+
+    public void delHuman(int id) {
+        if (service.delHumanID(id)){ view.print("Объект удален");}
+        else view.print("Удаление по этому ID невозможно");
+    }
+
+    public void searchHuman(String lastName) {
+           view.print(service.searchHuman(lastName).toString());
+
+    }
+    public void loadList(String nameFile){
+        service.loadFamilyGroup(nameFile);
+        view.print("Загружено");
+    }
+
+    public void showList(){
+        view.print(service.getFamilyGroup().toString());
+    }
+
 
 }

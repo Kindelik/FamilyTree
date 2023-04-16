@@ -30,6 +30,7 @@ public class Human implements Serializable, Comparable<Human>, Animal {
      * @param mather      ссылка на объект мать Humans.Human(sex female)
      * @param father      ссылка на объект отец Humans.Human(sex male)
      */
+
     public Human(int id, String firstName, String lastname, LocalDate dateOfBirth, Sex sex, Human mather, Human father) {
         this.id = id;
         this.firstName = firstName;
@@ -42,7 +43,7 @@ public class Human implements Serializable, Comparable<Human>, Animal {
         this.childrens = new ArrayList<>();
 
     }
-
+/*
     public Human(int id, String firstName, String lastname, LocalDate dateOfBirth, Sex sex) {
         this.id = id;
         this.firstName = firstName;
@@ -54,7 +55,7 @@ public class Human implements Serializable, Comparable<Human>, Animal {
         this.father = null;
         this.childrens = new ArrayList<>();
     }
-
+*/
     public String getFirstName() {
         return firstName;
     }

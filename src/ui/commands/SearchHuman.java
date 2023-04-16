@@ -2,9 +2,9 @@ package ui.commands;
 
 import ui.Console;
 
-public class SearcHuman extends Command {
+public class SearchHuman extends Command {
 
-    public SearcHuman(Console console) {
+    public SearchHuman(Console console) {
         super(console);
     }
 
@@ -14,7 +14,7 @@ public class SearcHuman extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() {getConsole().searchHuman();
     }
 }
 

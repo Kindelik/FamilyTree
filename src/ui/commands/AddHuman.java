@@ -4,7 +4,6 @@ import Services.Service;
 import ui.Console;
 
 
-
 public class AddHuman extends Command {
     public AddHuman(Console console) {
         super(console);
@@ -19,4 +18,4 @@ public class AddHuman extends Command {
     public void execute() {
         getConsole().addhuman();
     }
-    }
+}

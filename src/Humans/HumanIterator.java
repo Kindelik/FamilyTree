@@ -16,7 +16,6 @@ private List<Human> humanList;
 
     @Override
     public boolean hasNext() {
-
         return index< humanList.size();
     }
 

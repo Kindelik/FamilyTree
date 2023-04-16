@@ -19,33 +19,30 @@ public class Main {
        // FamilyTree<Human> test = new FamilyTree();
         Service serviceHuman = new Service();
 
-        //serviceHuman.addHuman("Андрей", "Пивоваров", LocalDate.of(1974, 11, 21), Sex.male);
-       // serviceHuman.addHuman("Мария", "Белова", LocalDate.of(1975, 6, 15), Sex.female);
-       // serviceHuman.addHuman("Артем", "Пивоваров", LocalDate.of(2000, 3, 8),
-       //         Sex.male, (Human) serviceHuman.getFamilyGroup().getFamilyTree().get(0), (Human) serviceHuman.getFamilyGroup().getFamilyTree().get(1));
-       // serviceHuman.addHuman("Кристина", "Вротмненоговна", LocalDate.of(2003, 1, 27), Sex.female);
-       // serviceHuman.addHuman("Алина", "Пивоварова", LocalDate.of(2023, 8, 18),
-       //         Sex.female, (Human) serviceHuman.getFamilyGroup().getFamilyTree().get(2), (Human) serviceHuman.getFamilyGroup().getFamilyTree().get(3));
+        serviceHuman.addHuman("Андрей", "Пивоваров", "1974-11-21", Sex.male);
+        serviceHuman.addHuman("Мария", "Белова", "1975-06-15", Sex.female);
+       serviceHuman.addHuman("Артем", "Пивоваров", "2000-03-08",
+                Sex.male, (Human) serviceHuman.getFamilyGroup().getFamilyTree().get(0), (Human) serviceHuman.getFamilyGroup().getFamilyTree().get(1));
+       serviceHuman.addHuman("Кристина", "Вротмненоговна", "2003-01-27", Sex.female);
+        serviceHuman.addHuman("Алина", "Пивоварова","2023-08-18",
+               Sex.female, (Human) serviceHuman.getFamilyGroup().getFamilyTree().get(2), (Human) serviceHuman.getFamilyGroup().getFamilyTree().get(3));
 
 
-      // serviceHuman.saveFamilygroup("test");
-       serviceHuman.loadFamilygroup("test");
+      serviceHuman.saveFamilyGroup("FamList");
+       serviceHuman.loadFamilyGroup("FamList");
 
 
-        serviceHuman.addHuman("Григорий", "Лифанов", LocalDate.of(1994,04,24), Sex.male);
+        //serviceHuman.addHuman("Григорий", "Лифанов", LocalDate.of(1994,04,24), Sex.male);
 
         for (Object item : serviceHuman.getFamilyGroup()) {
             System.out.println(item);
         }
-
 */
 
         View view = new Console();
         Service service = new Service();
         Presenter presenter = new Presenter(view, service);
         view.start();
-
-
     }
 }
 

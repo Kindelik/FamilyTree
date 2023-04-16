@@ -7,6 +7,7 @@ public  interface Animal<E> {
 
 
       int getId();
+
      String getFirstName();
 
      String getLastname();

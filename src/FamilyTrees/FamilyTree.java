@@ -34,6 +34,16 @@ public class FamilyTree<E extends Animal> implements Serializable,Iterable<E> {
         }
     }
 
+    public void delHumanID(int id) {
+        for (Animal item : this
+        ) {
+            if (item.getId() == id) {
+                getFamilyTree().remove(item);
+            }
+        }
+    }
+
+
     // Поиск человека по Фамилии в дереве
     public List<E> searchHuman(String lastName) {
         List<E> searchTemp = new ArrayList<>();

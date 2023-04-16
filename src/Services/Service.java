@@ -8,6 +8,7 @@ import WorkingFiles.InOutFiles;
 import WorkingFiles.inOutSerialObject;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Service {
     private int id;
@@ -27,19 +28,25 @@ public class Service {
         return familyGroup;
     }
 
-    public void addHuman(String firstName, String lastname, LocalDate dateOfBirth, Sex sex, Human mather, Human father) {
+    public void addHuman(String firstName, String lastname, String strDateOfBirth, Sex sex, Human mather, Human father) {
         id++;
-        familyGroup.add(new Human(id, firstName, lastname, dateOfBirth, sex, mather, father));
+        familyGroup.add(new Human(id, firstName, lastname, LocalDate.parse(strDateOfBirth), sex, mather, father));
     }
 
-    public void addHuman(String firstName, String lastname, LocalDate dateOfBirth, Sex sex) {
+    public void addHuman(String firstName, String lastname, String strDateOfBirth, Sex sex) {
         id++;
-        familyGroup.add(new Human(id, firstName, lastname, dateOfBirth, sex));
+        familyGroup.add(new Human(id, firstName, lastname, LocalDate.parse(strDateOfBirth), sex, null, null));
     }
 
 
+ public boolean delHumanID(int id){
+    familyGroup.delHumanID(id);
+     return true;
+ }
 
-
+ public List<Animal> searchHuman(String lastname){
+        return familyGroup.searchHuman(lastname);
+ }
     public void sortByID() {
         familyGroup.sortByID();
     }

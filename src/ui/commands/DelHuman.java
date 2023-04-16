@@ -15,6 +15,7 @@ public class DelHuman extends Command {
 
     @Override
     public void execute() {
+        getConsole().delHuman();
     }
 }
 
