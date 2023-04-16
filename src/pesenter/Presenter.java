@@ -11,6 +11,8 @@ public class Presenter {
     private View view;
     private Service service;
 
+
+
     public Presenter(View view, Service service) {
         this.view = view;
         this.service = service;

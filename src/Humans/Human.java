@@ -156,7 +156,6 @@ public class Human implements Serializable, Comparable<Human>, Animal {
     public int compareTo(Human o) {
         return firstName.compareTo(o.firstName);
 
-
     }
 
 

@@ -38,6 +38,8 @@ public class Service {
     }
 
 
+
+
     public void sortByID() {
         familyGroup.sortByID();
     }
@@ -46,12 +48,12 @@ public class Service {
         familyGroup.sortByLastName();
     }
 
-    public void saveFamilygroup(String str) {
+    public void saveFamilyGroup(String str) {
         InOutFiles save = new inOutSerialObject();
         save.saveFile(this.familyGroup, str);
     }
 
-    public void loadFamilygroup(String str) {
+    public void loadFamilyGroup(String str) {
         InOutFiles load = new inOutSerialObject();
         this.familyGroup = load.loadFile(str);
         id = 1;

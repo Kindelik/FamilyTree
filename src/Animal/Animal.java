@@ -20,13 +20,10 @@ public  interface Animal<E> {
 
      abstract Animal getFather();
 
-     default List<E> getChildrens() {
-        return null;
-    }
+     List<E> getChildrens();
 
-     default String getSex() {
-        return null;
-    }
 
-    void addChildren(Animal human);
+      String getSex();
+
+    void addChildren(Animal animal);
 }
