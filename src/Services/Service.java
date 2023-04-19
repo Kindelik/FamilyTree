@@ -6,24 +6,26 @@ import Humans.Human;
 import Sex.Sex;
 import WorkingFiles.InOutFiles;
 import WorkingFiles.inOutSerialObject;
-
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class Service {
     private int id;
     private FamilyTree<Animal> familyGroup;
+     private final InOutFiles workFile;
 
     public Service(FamilyTree familyGroup) {
         this.familyGroup = familyGroup;
+        this.workFile = new inOutSerialObject();
 
     }
 
     public Service() {
         this.familyGroup = new FamilyTree<Animal>();
+        this.workFile = new inOutSerialObject();
 
     }
-
     public FamilyTree getFamilyGroup() {
         return familyGroup;
     }
@@ -55,18 +57,24 @@ public class Service {
         familyGroup.sortByLastName();
     }
 
-    public void saveFamilyGroup(String str) {
-        InOutFiles save = new inOutSerialObject();
-        save.saveFile(this.familyGroup, str);
+    public boolean saveFamilyGroup(String str) {
+        if(workFile.saveFile(this.familyGroup, str)) return true;
+        else return false;
     }
 
-    public void loadFamilyGroup(String str) {
-        InOutFiles load = new inOutSerialObject();
-        this.familyGroup = load.loadFile(str);
-        id = 1;
-        for (Animal item : this.familyGroup) {
-            if (id < item.getId()) id = item.getId();
+    public boolean loadFamilyGroup(String str) {
+        FamilyTree temp = workFile.loadFile(str);
+        if(Objects.nonNull(temp)) {
+            this.familyGroup = temp;
+            if (Objects.nonNull(familyGroup)) {
+                id = 1;
+                for (Animal item : this.familyGroup) {
+                    if (id < item.getId()) id = item.getId();
+                }
+                return true;
+            }
         }
+        return false;
     }
 }
 

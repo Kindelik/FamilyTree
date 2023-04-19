@@ -1,14 +1,12 @@
 package ui;
 
+import Sex.Sex;
 import pesenter.Presenter;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Console implements View {
     private Scanner scanner;
@@ -33,13 +31,14 @@ public class Console implements View {
             if (checkInput(command)) {
                 menu.execute(Integer.parseInt(command));
             } else {
-                System.out.println("что-то пошло не так");
+                System.out.println("\nВыбери правильную команду\n");
             }
         }
 
     }
+
     private boolean checkInput(String text) {
-        return text.matches("[0-9]+");
+        return text.matches("[0-9]") & Integer.parseInt(text) <= menu.menuSize();
     }
 
     private void hello() {
@@ -56,22 +55,36 @@ public class Console implements View {
     }
 
     public void addhuman() {
-
         System.out.println("Введите имя");
         String firstName = scanner.nextLine();
         System.out.println("Введите фамилию");
         String lastName = scanner.nextLine();
-        System.out.println("Введите дату рождения(Пример 1994,04,24)");
-        String dateOfBirth = scanner.nextLine();
-        if (!dateOfBirth.matches("[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}")) {
-            System.out.println("Введите дату рождения(Пример 1994-04-24)");
-            dateOfBirth = scanner.nextLine();
-        }
-        System.out.println("Введите пол(male or female )");
-        String sex = scanner.nextLine();
+        String dateOfBirth = getDateOfBirth();
+        String sex = getSex();
         List<String> human = new ArrayList<>();
         Collections.addAll(human, firstName, lastName, dateOfBirth, sex);
         presenter.addHuman(human);
+    }
+
+    private String getSex() {
+        System.out.println("Введите пол(male or female )");
+        String sex = scanner.nextLine();
+        System.out.println(Sex.valueOf(sex));
+        if (!sex.equals(String.valueOf(Sex.male)) && !sex.equals(String.valueOf(Sex.female))) {
+            System.out.println("Неверный ввод...");
+            getSex();
+        }
+        return sex;
+    }
+
+    private String getDateOfBirth() {
+        System.out.println("Введите дату рождения(Пример 1994-04-24)");
+        String dateOfBirth = scanner.nextLine();
+        if (!dateOfBirth.matches("([0-2][0-9]{3})-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])")) {
+            System.out.println("Неверный ввод...");
+            getDateOfBirth();
+        }
+        return dateOfBirth;
     }
 
     public void delHuman() {
@@ -90,12 +103,20 @@ public class Console implements View {
         String lastName = scanner.nextLine();
         presenter.searchHuman(lastName);
     }
+
+    public void showList() {
+        presenter.showList();
+    }
+
     public void loadFile() {
         System.out.println("Введите имя файла");
         String nameFile = scanner.nextLine();
         presenter.loadList(nameFile);
     }
-    public void showList(){
-        presenter.showList();
+
+    public void saveList() {
+        System.out.println("Введите имя файла");
+        String nameFile = scanner.nextLine();
+        presenter.saveList(nameFile);
     }
 }

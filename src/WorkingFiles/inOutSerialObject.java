@@ -1,27 +1,32 @@
 package WorkingFiles;
 
 import FamilyTrees.FamilyTree;
-import WorkingFiles.InOutFiles;
 
 import java.io.*;
 
 public class inOutSerialObject implements InOutFiles, Serializable {
-/** Не работает*/
+
     public FamilyTree loadFile(String str) {
-        FamilyTree familyTree = null;
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(str))) {
-            familyTree = (FamilyTree) ois.readObject();
+            FamilyTree qwerty;
+            qwerty = (FamilyTree) ois.readObject();
+            ois.close();
+            return qwerty;
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            System.out.println("ERROR - File not found");
+            return null;
         }
-      return familyTree;
     }
 
-    public  void saveFile(FamilyTree familyTree, String str) {
+
+
+    public  boolean saveFile(FamilyTree familyTree, String str) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(str))) {
           oos.writeObject(familyTree);
+          oos.close();
+          return true;
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+           return false;
         }
     }
 }

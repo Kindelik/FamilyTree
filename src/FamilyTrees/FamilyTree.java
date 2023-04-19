@@ -1,10 +1,8 @@
 package FamilyTrees;
 import Animal.Animal;
-import Humans.Human;
 import Humans.HumanComparatorByID;
 import Humans.HumanComparatorByLastName;
 import Humans.HumanIterator;
-
 import java.io.Serializable;
 import java.util.*;
 
@@ -13,18 +11,15 @@ import java.util.*;
     */
 public class FamilyTree<E extends Animal> implements Serializable,Iterable<E> {
     private List<E> familyTree;
-
     public FamilyTree(List<E> familyTree) {
         this.familyTree = familyTree;
     }
     public FamilyTree() {
         this.familyTree = new ArrayList<>();
     }
-
     public List<E> getFamilyTree() {
         return familyTree;
     }
-
     // Добавить новый объект Humans.Humans.Human в лист дерева
     public void add(E human) {
         if (!familyTree.contains(human)) {
@@ -33,7 +28,6 @@ public class FamilyTree<E extends Animal> implements Serializable,Iterable<E> {
             if (human.getMather() != null) human.getMather().addChildren( human);
         }
     }
-
     public void delHumanID(int id) {
         for (Animal item : this
         ) {
@@ -42,8 +36,6 @@ public class FamilyTree<E extends Animal> implements Serializable,Iterable<E> {
             }
         }
     }
-
-
     // Поиск человека по Фамилии в дереве
     public List<E> searchHuman(String lastName) {
         List<E> searchTemp = new ArrayList<>();
@@ -52,9 +44,6 @@ public class FamilyTree<E extends Animal> implements Serializable,Iterable<E> {
         }
         return searchTemp;
     }
-
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -62,8 +51,6 @@ public class FamilyTree<E extends Animal> implements Serializable,Iterable<E> {
         FamilyTree that = (FamilyTree) o;
         return Objects.equals(familyTree, that.familyTree);
     }
-
-
     @Override
     public int hashCode() {
         return Objects.hash(familyTree);
@@ -76,7 +63,6 @@ public class FamilyTree<E extends Animal> implements Serializable,Iterable<E> {
         }
         return " ";
     }
-
     @Override
     public Iterator<E> iterator() {
 

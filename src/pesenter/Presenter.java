@@ -4,12 +4,12 @@ import Services.Service;
 import Sex.Sex;
 import ui.View;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class Presenter {
-    private View view;
-    private Service service;
+    private final View view;
+    private final Service service;
 
 
 
@@ -34,13 +34,19 @@ public class Presenter {
 
     }
     public void loadList(String nameFile){
-        service.loadFamilyGroup(nameFile);
-        view.print("Загружено");
+        if (service.loadFamilyGroup(nameFile)) view.print("Загружено");
+        else view.print("Ошибка загрузки");
     }
 
     public void showList(){
+        if(Objects.isNull(service)){
+            view.print("Список пустой");
+        }
         view.print(service.getFamilyGroup().toString());
     }
 
-
+    public void saveList(String nameFile) {
+        if(service.saveFamilyGroup(nameFile)) view.print("Сохранено");
+        else view.print("Ошибка сохранения");
+    }
 }

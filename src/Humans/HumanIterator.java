@@ -1,7 +1,5 @@
 package Humans;
 
-import Humans.Human;
-
 import java.util.Iterator;
 import java.util.List;
 

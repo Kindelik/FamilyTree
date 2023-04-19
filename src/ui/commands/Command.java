@@ -4,8 +4,8 @@ import Services.Service;
 import ui.Console;
 
 public abstract class Command implements Option {
-    private Console console;
-    private Service service;
+    private final Console console;
+
     public Command(Console console) {
         this.console = console;
     }

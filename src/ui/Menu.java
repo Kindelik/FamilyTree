@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Menu {
 
-    private List<Option> commands;
-    private Console console;
+    private final List<Option> commands;
+    private final Console console;
 
     public Menu(Console console) {
         this.console = console;
@@ -16,10 +16,16 @@ public class Menu {
         commands.add(new AddHuman(console));
         commands.add(new SearchHuman(console));
         commands.add(new DelHuman(console));
-        commands.add(new Loadlist(console));
         commands.add(new ShowList(console));
+        commands.add(new Loadlist(console));
+        commands.add(new SaveList(console));
         commands.add(new Exit(console));
     }
+
+    public int menuSize(){
+        return commands.size();
+    }
+
     void execute(int num){
         Option option = commands.get(num-1);
         option.execute();
@@ -35,5 +41,3 @@ public class Menu {
         return stringBuilder.toString();
     }
 }
-
-

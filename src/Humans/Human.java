@@ -1,11 +1,9 @@
 package Humans;
 import Animal.Animal;
 import Sex.Sex;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -13,11 +11,11 @@ import static java.lang.String.*;
 
 public class Human implements Serializable, Comparable<Human>, Animal {
     private int id;
-    private String firstName;
-    private String lastname;
-    private LocalDate dateOfBirth;
-    private LocalDate dateOfDeath;
-    private String sex;
+    private final String firstName;
+    private final String lastname;
+    private final LocalDate dateOfBirth;
+    private final LocalDate dateOfDeath;
+    private final String sex;
     private Human mather;
     private Human father;
     private final List<Human> childrens;
@@ -41,21 +39,7 @@ public class Human implements Serializable, Comparable<Human>, Animal {
         this.mather = mather;
         this.father = father;
         this.childrens = new ArrayList<>();
-
     }
-/*
-    public Human(int id, String firstName, String lastname, LocalDate dateOfBirth, Sex sex) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastname = lastname;
-        this.sex = valueOf(sex);
-        this.dateOfBirth = dateOfBirth;
-        this.dateOfDeath = null;
-        this.mather = null;
-        this.father = null;
-        this.childrens = new ArrayList<>();
-    }
-*/
     public String getFirstName() {
         return firstName;
     }
@@ -75,7 +59,6 @@ public class Human implements Serializable, Comparable<Human>, Animal {
     public int getId() {
         return id;
     }
-
 
     public Human getMather() {
         return mather;
@@ -111,10 +94,6 @@ public class Human implements Serializable, Comparable<Human>, Animal {
         }
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public StringBuilder getHumanInfo() {
         StringBuilder sbH = new StringBuilder();
         sbH.append(this.id);
@@ -131,7 +110,6 @@ public class Human implements Serializable, Comparable<Human>, Animal {
         sbH.append(this.sex);
         return sbH;
     }
-
     @Override
     public String toString() {
         if (dateOfDeath != null) {
@@ -139,7 +117,6 @@ public class Human implements Serializable, Comparable<Human>, Animal {
         }
         return " %s %s (id %d) \n  Дата рождения - %s \n".formatted(firstName, lastname, id, dateOfBirth);
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -158,8 +135,6 @@ public class Human implements Serializable, Comparable<Human>, Animal {
         return firstName.compareTo(o.firstName);
 
     }
-
-
 }
 
 
